@@ -1,0 +1,67 @@
+<html lang="en">
+	<head> 
+		<title>4-patas</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" href="css/estilos.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+	<body>
+		<header>
+			<div class="alert alert-info">
+			<h3>Validar la extensión de archivos (JS)</h3>
+			</div>
+		</header>
+
+		<section class="text-center" >
+			<input type="file" id="archivoInput" class="col-md-offset-4 col-md-4" onchange="return validarExt()" />
+			<br><br>
+			<div id="visorArchivo">
+				<!--Aqui se desplegará el fichero-->
+			</div>
+
+        
+        
+
+
+</body>
+</html>
+<script type="text/javascript">
+function fn1()
+{
+    var str = document.getElementById("Texto").value;
+    alert("value inside the text box is:" + str);
+}
+
+function validarExt()
+
+{
+    var archivoInput = document.getElementById('archivoInput');
+    var archivoRuta = archivoInput.value;
+    var extPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
+    if(!extPermitidas.exec(archivoRuta)){
+        alert('Sube un archivo que tenga las extensiones .jpeg / .jpg / .png / .gif solamente.');
+        archivoInput.value = '';
+        return false;
+    }
+
+    else
+    {
+        //PRevio de .jpeg / .jpg / .png / .gif
+        if (archivoInput.files && archivoInput.files[0]) 
+        {
+            var visor = new FileReader();
+            visor.onload = function(e) 
+            {
+                document.getElementById('visorArchivo').innerHTML = 
+                '<embed src="'+e.target.result+'" width="500" height="375" />';
+            };
+            visor.readAsDataURL(archivoInput.files[0]);
+        }
+    }
+   
+
+}
+
+</script>
