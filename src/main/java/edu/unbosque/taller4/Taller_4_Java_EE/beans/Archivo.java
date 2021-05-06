@@ -17,7 +17,12 @@ public class Archivo {
 
 
     public Archivo() {
-        f= new File(System.getProperty("user.dir") + "\\data\\usuarios.dat");
+        f= new File("users.dat");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -53,11 +58,11 @@ public class Archivo {
 
     public ArrayList<User> leerArchivo() {
 
-        ArrayList<User> Apostador = new ArrayList<User>();
+        ArrayList<User> user = new ArrayList<User>();
         if (f.length() != 0) {
             try {
                 entrada = new ObjectInputStream(new FileInputStream(f));
-                Apostador = (ArrayList<User>) entrada.readObject();
+                user = (ArrayList<User>) entrada.readObject();
             } catch (FileNotFoundException e) {
                 // TODO: handle exception
                 e.printStackTrace();
@@ -67,7 +72,7 @@ public class Archivo {
                 e.printStackTrace();
             }
         }
-        return Apostador;
+        return user;
     }
 
 

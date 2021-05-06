@@ -8,11 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Paths;
 
 @WebServlet(name = "cookiesImprimir", value = "/save-image")
 @MultipartConfig
-public class ImageCookie extends HttpServlet {
+public class UploadImage extends HttpServlet {
 
     private String message;
 
@@ -28,13 +29,29 @@ public class ImageCookie extends HttpServlet {
         String loaded_image = request.getParameter("image");
 
             Cookie[] cookie = request.getCookies();
+
+
+
             String name = cookie[0].getValue();
             String fecha = java.util.Calendar.getInstance().getTime().toString();
             String desc = request.getParameter("desc");
-            Bean b = new Bean(name, desc, fecha, loaded_image);
+            Bean b = new Bean();
+            for (int i = 0; i < cookie.length; i++) {
+            if(cookie[i].getName().equals("usuario")){
+                name =cookie[i].getValue();
+            }
+        }
+            b.crearImagen(name, desc, fecha, loaded_image);
 
-            
+            PrintWriter out = resp.getWriter();
+            String img = b.leerImagenes();
 
+
+
+            out.println("<p>" + img + " hola" +
+                "</p>");
+            out.println("<a href=main.jsp>Ingresar otra imagen</a>");
+            out.close();
     }
 
 

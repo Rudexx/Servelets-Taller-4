@@ -19,20 +19,26 @@ public class Bean implements Serializable {
 
 
 
-    public Bean(String usuario, String desc , String date, String name){
+    public Bean(){
     file = new Archivo();
     user_list = file.leerArchivo();
 
-    crearImagen(usuario,desc,date,name);
+
     }
 
     public void crearImagen(String usuario, String desc , String date, String name){
         User u = new User(usuario,desc,date,name);
+        user_list.add(u);
         file.escribirArchivo(user_list);
     }
 
-    public ArrayList<User> leerImagenes(){
-        return file.leerArchivo();
+    public String leerImagenes(){
+        String resultado = "";
+        System.out.println(file.leerArchivo().size());
+        for (int i = 0; i <file.leerArchivo().size() ; i++) {
+            resultado = resultado + file.leerArchivo().get(i).toString() + "\n";
+        }
+        return resultado;
     }
 
 

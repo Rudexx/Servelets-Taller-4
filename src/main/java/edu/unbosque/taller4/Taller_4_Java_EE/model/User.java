@@ -18,6 +18,11 @@ public class User implements Serializable {
 
     }
 
-
-
+    @Override
+    public String toString() {
+        return   "Usuario: " + nombre + "\n" +
+                "Descripción de la Imagen: " + desc + "\n" +
+                "Fecha de Subida: " + date + "\n" +
+                "Imagen: " + img_name;
+    }
 }
