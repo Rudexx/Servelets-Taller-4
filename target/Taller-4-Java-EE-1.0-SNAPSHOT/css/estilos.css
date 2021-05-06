@@ -3,6 +3,7 @@ body
 {
 
 background: url(../img/Madera.jpg);
+
 }
 
 header 
@@ -75,4 +76,7 @@ h3{
 	margin-right: 2%;
 	margin-left: 2%;
 	text-align: center;
+}
+label{
+	color:white;
 }

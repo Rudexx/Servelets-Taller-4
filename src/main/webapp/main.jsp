@@ -31,15 +31,18 @@
 
 
     <form action="save-image" method="post">
-        <button type="submit" , id="enviarImagen"> Enviar Imágen</button>
+
         <input type="file" id="archivoInput" class="col-md-offset-4 col-md-4"
-               onchange="return validarExt()" required="true" name="image"/>
+               onchange="return validarExt()" required="true" name="image" />
         <br>
         <br>
         <label>  Inserte la descripción de la Fotografia</label>
         <br>
         <br>
         <textarea name="desc">  </textarea>
+        <br>
+        <br>
+        <button type="submit" , id="enviarImagen"> Enviar Imágen</button>
     </form>
 </section>
 
