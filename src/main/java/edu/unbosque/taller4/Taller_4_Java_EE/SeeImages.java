@@ -1,32 +1,25 @@
 package edu.unbosque.taller4.Taller_4_Java_EE;
 
-import edu.unbosque.taller4.Taller_4_Java_EE.beans.Bean;
-
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "uploading", value = "/upload")
+@WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class SeeImages extends HttpServlet {
     private String message;
 
     public void init() {
-
+        message = "Hello World!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        Bean b = new Bean();
-        String img = b.leerImagenes();
-
-
+        // Hello
         PrintWriter out = response.getWriter();
-        out.println("<p>" + img + " hola" +
-                "</p>");
-        out.println("<a href=main.jsp>Ingresar otra imagen</a>");
-        out.close();
-
+        out.println("<html><body>");
+        out.println("<h1>" + message + "</h1>");
+        out.println("</body></html>");
     }
 
     public void destroy() {

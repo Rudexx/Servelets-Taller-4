@@ -17,7 +17,7 @@ public class Archivo {
 
 
     public Archivo() {
-        f= new File("users.dat");
+        f= new File("usuario.dat");
         try {
             f.createNewFile();
         } catch (IOException e) {

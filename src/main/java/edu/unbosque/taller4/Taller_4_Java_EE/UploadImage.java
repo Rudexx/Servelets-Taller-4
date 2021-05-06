@@ -47,10 +47,15 @@ public class UploadImage extends HttpServlet {
             String img = b.leerImagenes();
 
 
-
-            out.println("<p>" + img + " hola" +
-                "</p>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<link rel=stylesheet href=css/image.css>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("</body></html>");
+            out.println("<p>" + img +"</p>");
             out.println("<a href=main.jsp>Ingresar otra imagen</a>");
+            out.println("</body>");
             out.close();
     }
 
