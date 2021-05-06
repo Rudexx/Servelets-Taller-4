@@ -1,0 +1,29 @@
+body{
+    background: url(../img/Madera.jpg);
+    margin-top: 4%;
+    margin-right: 2%;
+    margin-left: 2%;
+    text-align: center;
+
+
+}
+h1{
+    color:white;
+}
+label{
+    color: white;
+}
+
+button{
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color .15s ease-in-out;
+}
+footer{
+    color: white;
+    font: oblique bold 120% cursive;
+    position: absolute;
+    bottom: 5px;
+}
