@@ -33,11 +33,29 @@ public class PruebaCookie extends HttpServlet {
             resp.addCookie(c1);
 
 
-            out.println("alert('Sesion Iniciada correctamente');");
-            resp.sendRedirect("main.html");
+
+            Cookie[] c = req.getCookies();
+            String name = "n";
+            for (int i = 0; i <c.length ; i++) {
+                if(c[i].getName() == "usuario"){
+                    name = c[i].getValue();
+                    i = c.length;
+                }
+            }
+
+            out = resp.getWriter();
+            resp.sendRedirect("main.jsp");
 
 
-           
+
+
+            out.println("<header>\n" +
+                    "    <div class=\"alert alert-info\">\n" +
+                    "        <h3>Bienvenido, Ingresa la foto de tu mascota a continuación </h3>\n" +
+                    "    </div>\n" +
+                    "</header>");
+
+
 
             out.close();
 

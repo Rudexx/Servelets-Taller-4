@@ -1,14 +1,17 @@
 package edu.unbosque.taller4.Taller_4_Java_EE;
 
+import edu.unbosque.taller4.Taller_4_Java_EE.beans.Bean;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.nio.file.Paths;
+
 @WebServlet(name = "cookiesImprimir", value = "/save-image")
+@MultipartConfig
 public class ImageCookie extends HttpServlet {
 
     private String message;
@@ -20,32 +23,18 @@ public class ImageCookie extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        String userName = req.getParameter("user");
-        System.out.println(userName);
+        String loaded_image = request.getParameter("image");
 
-        try{
-            PrintWriter out = resp.getWriter();
+            Cookie[] cookie = request.getCookies();
+            String name = cookie[0].getValue();
+            String fecha = java.util.Calendar.getInstance().getTime().toString();
+            String desc = request.getParameter("desc");
+            Bean b = new Bean(name, desc, fecha, loaded_image);
 
-            Cookie c1 = new Cookie("usuario" , userName);
-            resp.addCookie(c1);
+            
 
-
-            out.println("alert('Sesion Iniciada correctamente');");
-            resp.sendRedirect("main.html");
-
-            Cookie[] cookie = req.getCookies();
-            for (int i = 0; i < cookie.length ; i++) {
-                System.out.println(cookie[i].getName() + "\n" + cookie[i].getValue());
-            }
-
-            out.close();
-
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
     }
 
 
